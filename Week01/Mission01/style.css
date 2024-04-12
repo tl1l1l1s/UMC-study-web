@@ -1,0 +1,98 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ACD8E6;
+}
+
+div.wrapper {
+    width: 600px;
+    padding: 65px 0px;
+    border-radius: 6px;
+    background-color: #DFF0F5;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    margin: 0;
+    
+}
+
+hr {
+    width: 70%;
+    border: 1px solid #F9FBFD;
+    margin: 30px;
+}
+
+div.input {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 14px;
+}
+
+input {
+    width: 100%;
+    padding: 3px 0;
+    border: 2px solid #F9FBFD;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#submit {
+    width: 45%;
+    padding: 10px 0;
+    border: 0px;
+    border-radius: 4px;
+    margin-top: 30px;
+    color: white;
+    background-color: #808080;
+}
+
+div#modal-wrapper {
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    font-weight: bold;
+}
+
+div.modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 30px;
+    border-radius: 8px;
+    background-color: white;
+
+    p{
+        margin-top: 0;
+    }
+
+    div:last-child {
+        width: 100%;
+        text-align: right;
+    }
+}
