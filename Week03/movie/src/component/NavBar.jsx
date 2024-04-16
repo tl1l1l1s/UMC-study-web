@@ -9,19 +9,26 @@ const NavBar = () => {
     justify-content: space-between;
     background-color: #171b39;
     color: white;
-  `;
 
-  const LinkWrapper = styled.div`
     a {
       color: white;
       text-decoration: none;
       margin: 0px 5px;
+      line-height: 20px;
+    }
+
+    a:hover {
+      cursor: pointer;
+      transform: scale(1.2);
+      font-weight: bold;
     }
   `;
 
+  const LinkWrapper = styled.div``;
+
   return (
     <Container>
-      <div>UMC Movie</div>
+      <Link to="/">UMC Movie</Link>
       <LinkWrapper>
         <Link to="/">회원가입</Link>
         <Link to="/popular">Popular</Link>
