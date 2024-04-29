@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 const PopularPage = () => {
   const [movieList, setMovieList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const options = {
     method: "GET",
@@ -13,6 +15,7 @@ const PopularPage = () => {
     },
   };
   useEffect(() => {
+    setIsLoading(true);
     const fetchData = async () => {
       const data = await fetch(
         "https://api.themoviedb.org/3/movie/popular",
@@ -22,6 +25,7 @@ const PopularPage = () => {
         .catch((err) => console.log(err));
 
       setMovieList(data.results.slice(0, 8));
+      setIsLoading(false);
     };
 
     fetchData();
@@ -31,19 +35,24 @@ const PopularPage = () => {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
-    padding: 20px;
+    padding: 40px;
     background-color: #21234b;
   `;
 
   const Movie = styled.div`
     background-color: #383a69;
     color: white;
+
+    img {
+      width: 100%;
+    }
   `;
 
   const Description = styled.div`
     display: flex;
     justify-content: space-between;
-    padding: 0 10px;
+    padding: 10px;
+    padding-bottom: 60px;
   `;
 
   const Title = styled.div``;
@@ -51,17 +60,23 @@ const PopularPage = () => {
   const Rate = styled.div``;
 
   return (
-    <Container>
-      {movieList.map((item) => (
-        <Movie key={item.id}>
-          <img src={item.poster_path} />
-          <Description>
-            <Title>{item.title}</Title>
-            <Rate>⭐️{item.vote_average}</Rate>
-          </Description>
-        </Movie>
-      ))}
-    </Container>
+    <>
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <Container>
+          {movieList.map((item) => (
+            <Movie key={item.id}>
+              <img src={"http://image.tmdb.org/t/p/w500/" + item.poster_path} />
+              <Description>
+                <Title>{item.title}</Title>
+                <Rate>⭐️{item.vote_average}</Rate>
+              </Description>
+            </Movie>
+          ))}
+        </Container>
+      )}
+    </>
   );
 };
 
