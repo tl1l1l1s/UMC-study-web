@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { LoadingSpinner } from "./LoadingSpinner";
+import { LoadingSpinner } from "../component/LoadingSpinner";
 
 const PopularPage = () => {
   const [movieList, setMovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const options = {
     method: "GET",
@@ -46,6 +48,10 @@ const PopularPage = () => {
     img {
       width: 100%;
     }
+
+    :hover {
+      cursor: pointer;
+    }
   `;
 
   const Description = styled.div`
@@ -66,7 +72,21 @@ const PopularPage = () => {
       ) : (
         <Container>
           {movieList.map((item) => (
-            <Movie key={item.id}>
+            <Movie
+              key={item.id}
+              onClick={() =>
+                navigate(`/detail/${item.title}`, {
+                  state: {
+                    original_title: item.original_title,
+                    backdrop_path: item.backdrop_path,
+                    poster_path: item.poster_path,
+                    rate: item.vote_average,
+                    release_date: item.release_date,
+                    overview: item.overview,
+                  },
+                })
+              }
+            >
               <img src={"http://image.tmdb.org/t/p/w500/" + item.poster_path} />
               <Description>
                 <Title>{item.title}</Title>

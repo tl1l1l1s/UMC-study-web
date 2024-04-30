@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { LoadingSpinner } from "./LoadingSpinner";
+import { LoadingSpinner } from "../component/LoadingSpinner";
 
-const TopRatedPage = () => {
+const UpComingPage = () => {
   const [movieList, setMovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const options = {
     method: "GET",
@@ -18,7 +20,7 @@ const TopRatedPage = () => {
     setIsLoading(true);
     const fetchData = async () => {
       const data = await fetch(
-        "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1",
+        "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1",
         options
       )
         .then((res) => res.json())
@@ -66,7 +68,21 @@ const TopRatedPage = () => {
       ) : (
         <Container>
           {movieList.map((item) => (
-            <Movie key={item.id}>
+            <Movie
+              key={item.id}
+              onClick={() =>
+                navigate(`/detail/${item.title}`, {
+                  state: {
+                    original_title: item.original_title,
+                    backdrop_path: item.backdrop_path,
+                    poster_path: item.poster_path,
+                    rate: item.vote_average,
+                    release_date: item.release_date,
+                    overview: item.overview,
+                  },
+                })
+              }
+            >
               <img src={"http://image.tmdb.org/t/p/w500/" + item.poster_path} />
               <Description>
                 <Title>{item.title}</Title>
@@ -80,4 +96,4 @@ const TopRatedPage = () => {
   );
 };
 
-export default TopRatedPage;
+export default UpComingPage;

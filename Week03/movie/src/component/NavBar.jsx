@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const NavBar = () => {
+  const [isLogined, setIsLogined] = useState(false);
+
+  function handleClick() {
+    setIsLogined(!isLogined);
+  }
+
   const Container = styled.div`
     padding: 25px 20px;
     display: flex;
@@ -20,6 +26,7 @@ const NavBar = () => {
     a:hover {
       cursor: pointer;
       transform: scale(1.2);
+      color: #e4b940;
       font-weight: bold;
     }
   `;
@@ -30,7 +37,15 @@ const NavBar = () => {
     <Container>
       <Link to="/">UMC Movie</Link>
       <LinkWrapper>
-        <Link to="/">회원가입</Link>
+        {isLogined ? (
+          <Link to="/" onClick={handleClick}>
+            로그아웃
+          </Link>
+        ) : (
+          <Link to="/" onClick={handleClick}>
+            로그인
+          </Link>
+        )}
         <Link to="/popular">Popular</Link>
         <Link to="/nowplaying">Now Playing</Link>
         <Link to="/toprated">Top Rated</Link>
