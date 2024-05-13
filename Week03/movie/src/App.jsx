@@ -1,7 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import MainPage from "./page/MainPage";
 import "./App.css";
+import MainPage from "./page/MainPage";
+import SignupPage from "./page/SignupPage";
 import NavBar from "./component/NavBar";
 import Footer from "./component/Footer";
 import PopularPage from "./page/PopularPage";
@@ -17,6 +18,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route exact path="/" element={<MainPage />}></Route>
+        <Route exact path="/signup" element={<SignupPage />}></Route>
         <Route exact path="/popular" element={<PopularPage />}></Route>
         <Route exact path="/nowplaying" element={<NowPlayingPage />}></Route>
         <Route exact path="/toprated" element={<TopRatedPage />}></Route>
