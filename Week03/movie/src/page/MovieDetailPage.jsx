@@ -2,6 +2,20 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 
+const Title = styled.h1`
+  margin: 20px 0;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+`;
+
+const Content = styled.div`
+  margin: 20px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+`;
+
 const MovieDetailPage = () => {
   const state = useLocation().state;
   const {
@@ -42,22 +56,6 @@ const MovieDetailPage = () => {
       }
     }
   `;
-
-  const Title = styled.h1`
-    margin: 20px 0;
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-  `;
-
-  const Content = styled.div`
-    margin: 20px 0;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-  `;
-
-  console.log(state);
 
   return (
     <Container>

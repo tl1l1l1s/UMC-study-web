@@ -3,6 +3,38 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { LoadingSpinner } from "../component/LoadingSpinner";
 
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  padding: 40px;
+  background-color: #21234b;
+`;
+
+const Movie = styled.div`
+  background-color: #383a69;
+  color: white;
+
+  img {
+    width: 100%;
+  }
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+const Description = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  padding-bottom: 60px;
+`;
+
+const Title = styled.div``;
+
+const Rate = styled.div``;
+
 const PopularPage = () => {
   const [movieList, setMovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -32,38 +64,6 @@ const PopularPage = () => {
 
     fetchData();
   }, []);
-
-  const Container = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 10px;
-    padding: 40px;
-    background-color: #21234b;
-  `;
-
-  const Movie = styled.div`
-    background-color: #383a69;
-    color: white;
-
-    img {
-      width: 100%;
-    }
-
-    :hover {
-      cursor: pointer;
-    }
-  `;
-
-  const Description = styled.div`
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    padding-bottom: 60px;
-  `;
-
-  const Title = styled.div``;
-
-  const Rate = styled.div``;
 
   return (
     <>

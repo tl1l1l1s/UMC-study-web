@@ -2,31 +2,31 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const NavBar = () => {
-  const Container = styled.div`
-    padding: 25px 20px;
-    display: flex;
-    justify-content: space-between;
-    background-color: #171b39;
+const Container = styled.div`
+  padding: 25px 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #171b39;
+  color: white;
+
+  a {
     color: white;
+    text-decoration: none;
+    margin: 0px 5px;
+    line-height: 20px;
+  }
 
-    a {
-      color: white;
-      text-decoration: none;
-      margin: 0px 5px;
-      line-height: 20px;
-    }
+  a:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    color: #e4b940;
+    font-weight: bold;
+  }
+`;
 
-    a:hover {
-      cursor: pointer;
-      transform: scale(1.2);
-      color: #e4b940;
-      font-weight: bold;
-    }
-  `;
+const LinkWrapper = styled.div``;
 
-  const LinkWrapper = styled.div``;
-
+const NavBar = () => {
   return (
     <Container>
       <Link to="/">UMC Movie</Link>

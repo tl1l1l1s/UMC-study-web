@@ -2,23 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+const Container = styled.div`
+  height: 87%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #21234b;
+
+  h1,
+  h2,
+  a {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+  }
+`;
+
 const NotFoundPage = () => {
-  const Container = styled.div`
-    height: 87%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #21234b;
-
-    h1,
-    h2,
-    a {
-      font-size: 24px;
-      font-weight: bold;
-      color: white;
-    }
-  `;
-
   return (
     <>
       <Container>
