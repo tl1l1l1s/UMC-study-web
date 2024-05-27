@@ -45,15 +45,14 @@ const SearchInput = styled.input`
 `;
 
 const SearchResult = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   width: 70%;
   height: 500px;
   margin: 50px 0 0 0;
   padding: 30px 60px;
   background-color: #171b39;
   overflow: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #fecb24 #fecb24;
 `;
 
 const Loading = styled.div`
