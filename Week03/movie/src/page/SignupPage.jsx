@@ -55,13 +55,14 @@ const ErrorMessage = styled.div`
 
 const SignupPage = () => {
   const [enable, setEnable] = useState(false);
-  const [valid, setValid] = useState(Array(5).fill(false));
+  const [valid, setValid] = useState(Array(6).fill(false));
   const [data, setData] = useState();
   const [nameMsg, setNameMsg] = useState("");
   const [emailMsg, setEmailMsg] = useState("");
   const [ageMsg, setAgeMsg] = useState("");
   const [passwordMsg, setPasswordMsg] = useState("");
   const [passwordCheckMsg, setPasswordCheckMsg] = useState("");
+  const [idMsg, setIdMsg] = useState("");
 
   const navigate = useNavigate();
 
@@ -92,6 +93,17 @@ const SignupPage = () => {
           setValid(validState);
         }
 
+        break;
+
+      case "id":
+        if (e.target.value.length > 0) {
+          validState[5] = true;
+          setValid(validState);
+        } else {
+          setIdMsg("아이디를 입력해주세요!");
+          validState[1] = false;
+          setValid(validState);
+        }
         break;
 
       case "email":
@@ -200,7 +212,14 @@ const SignupPage = () => {
             placeholder="이름을 입력해주세요"
             onChange={handleChange}
           />
-          {!valid[0] && <ErrorMessage>{nameMsg}</ErrorMessage>}
+          {!valid[5] && <ErrorMessage>{nameMsg}</ErrorMessage>}
+          <Input
+            name="id"
+            type="text"
+            placeholder="아이디를 입력해주세요"
+            onChange={handleChange}
+          />
+          {!valid[0] && <ErrorMessage>{idMsg}</ErrorMessage>}
           <Input
             name="email"
             type="text"
@@ -233,7 +252,7 @@ const SignupPage = () => {
         </Form>
         <Help>
           이미 아이디가 있으신가요?
-          <Link to="/">로그인 페이지로 이동하기</Link>
+          <Link to="/login">로그인 페이지로 이동하기</Link>
         </Help>
       </Container>
     </>

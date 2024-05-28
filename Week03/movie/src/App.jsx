@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import MainPage from "./page/MainPage";
+import LoginPage from "./page/LoginPage";
 import SignupPage from "./page/SignupPage";
 import NavBar from "./component/NavBar";
 import Footer from "./component/Footer";
@@ -18,6 +19,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route exact path="/" element={<MainPage />}></Route>
+        <Route exact path="/login" element={<LoginPage />}></Route>
         <Route exact path="/signup" element={<SignupPage />}></Route>
         <Route exact path="/popular" element={<PopularPage />}></Route>
         <Route exact path="/nowplaying" element={<NowPlayingPage />}></Route>
