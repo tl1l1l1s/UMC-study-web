@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 const Container = styled.div`
   text-align: center;
-  padding: 100px 0px;
+  padding: 70px 0px;
   background-color: #21234b;
 `;
 
@@ -26,10 +26,10 @@ const Form = styled.form`
 `;
 
 const Input = styled.input`
-  width: 33%;
-  padding: 10px 18px;
+  width: 50%;
+  padding: 12px 20px;
   border-radius: 24px;
-  margin: 12px 0;
+  margin: 10px 0;
   font-size: 14px;
 `;
 

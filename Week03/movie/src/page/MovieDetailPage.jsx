@@ -42,8 +42,13 @@ const MovieDetailPage = () => {
     background-color: rgba(32, 35, 75, 0.9);
     background-blend-mode: multiply;
 
-    img {
-      width: 100%;
+    div:first-child {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 90%;
+      }
     }
 
     div:last-child {
@@ -53,6 +58,19 @@ const MovieDetailPage = () => {
 
       div:last-child {
         font-weight: normal;
+      }
+    }
+
+    @media (max-width: 768px) {
+      padding: 70px 70px;
+      grid-template-columns: 1fr;
+
+      div:first-child {
+        display: block;
+
+        img {
+          width: 70%;
+        }
       }
     }
   `;

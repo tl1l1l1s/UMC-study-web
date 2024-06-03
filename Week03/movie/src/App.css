@@ -108,7 +108,7 @@ section {
   display: block;
 }
 html {
-  height: 100%;
+  height: 100vh;
 }
 body {
   min-height: 100%;

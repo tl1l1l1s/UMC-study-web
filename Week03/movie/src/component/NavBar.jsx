@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import SideBar from "./SideBar";
+import Menu from "../assets/menu.png";
 
 const Container = styled.div`
-  padding: 25px 20px;
+  padding: 19px 20px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: #171b39;
   color: white;
 
@@ -26,17 +29,62 @@ const Container = styled.div`
 
 const LinkWrapper = styled.div``;
 
+const SideMenu = styled.div`
+  text-align: right;
+
+  :hover {
+    cursor: pointer;
+  }
+
+  img {
+    width: 28px;
+  }
+`;
+
 const NavBar = () => {
+  const [width, setWidth] = useState(window.innerWidth);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
+  // TODO throttle, debounce 추가
+
+  useState(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const handleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <Container>
-      <Link to="/">UMC Movie</Link>
-      <LinkWrapper>
-        <Link to="/signup">회원가입</Link>
-        <Link to="/popular">Popular</Link>
-        <Link to="/nowplaying">Now Playing</Link>
-        <Link to="/toprated">Top Rated</Link>
-        <Link to="/upcoming">Upcoming</Link>
-      </LinkWrapper>
+      <Link
+        to="/"
+        onClick={() => {
+          setIsOpen(false);
+        }}
+      >
+        UMC Movie
+      </Link>
+      {width > 786 ? (
+        <LinkWrapper>
+          <Link to="/signup">회원가입</Link>
+          <Link to="/popular">Popular</Link>
+          <Link to="/nowplaying">Now Playing</Link>
+          <Link to="/toprated">Top Rated</Link>
+          <Link to="/upcoming">Upcoming</Link>
+        </LinkWrapper>
+      ) : (
+        <SideMenu onClick={handleSidebar}>
+          <img src={Menu} />
+        </SideMenu>
+      )}
+      {isOpen ? <SideBar onClick={handleSidebar} /> : <></>}
     </Container>
   );
 };

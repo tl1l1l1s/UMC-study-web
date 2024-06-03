@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { LoadingSpinner } from "../component/LoadingSpinner";
-
 const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
+  grid-gap: 30px;
   padding: 40px;
   background-color: #21234b;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    padding: 30px 100px;
+  }
 `;
 
 const Movie = styled.div`
@@ -18,13 +22,17 @@ const Movie = styled.div`
   img {
     width: 100%;
   }
+
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 const Description = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  padding-bottom: 60px;
+  padding-bottom: 45px;
 `;
 
 const Title = styled.div``;
