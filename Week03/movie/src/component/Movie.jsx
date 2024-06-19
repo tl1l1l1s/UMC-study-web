@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const MovieContainer = styled.div`
+  position: relative;
   background-color: #383a69;
   color: white;
   text-align: left;
@@ -27,6 +28,25 @@ const Title = styled.div``;
 
 const Rate = styled.div``;
 
+const HoverContent = styled.div`
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  ${MovieContainer}:hover & {
+    display: block;
+  }
+
+  div {
+    margin: 10px;
+    padding: 0;
+  }
+`;
+
 export const Movie = (item) => {
   const navigate = useNavigate();
   const {
@@ -38,6 +58,7 @@ export const Movie = (item) => {
     release_date,
     overview,
   } = item.item;
+  console.log(item);
 
   return (
     <MovieContainer
@@ -59,6 +80,11 @@ export const Movie = (item) => {
         <Title>{title}</Title>
         <Rate>⭐️{vote_average}</Rate>
       </Description>
+
+      <HoverContent>
+        <Title>{title}</Title>
+        <Description>{overview}</Description>
+      </HoverContent>
     </MovieContainer>
   );
 };
