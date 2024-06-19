@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import IconSearch from "../assets/IconSearch";
+import { Movie } from "../component/Movie";
 
 const Container = styled.div`
   text-align: center;
@@ -62,34 +62,15 @@ const Loading = styled.div`
 
 const MovieContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 25% 25% 25% 25%;
   grid-gap: 10px;
-`;
 
-const Movie = styled.div`
-  background-color: #383a69;
-  color: white;
-  font-size: 16px;
-  text-align: left;
-
-  img {
-    width: 100%;
+  div {
+    font-size: 14px;
   }
 `;
 
-const Description = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  padding-bottom: 40px;
-`;
-
-const Title = styled.div``;
-
-const Rate = styled.div``;
-
 const MainPage = () => {
-  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [searchData, setSearchData] = useState([]);
@@ -143,29 +124,7 @@ const MainPage = () => {
             ) : (
               <MovieContainer>
                 {searchData.map((item) => (
-                  <Movie
-                    key={item.id}
-                    onClick={() =>
-                      navigate(`/detail/${item.title}`, {
-                        state: {
-                          original_title: item.original_title,
-                          backdrop_path: item.backdrop_path,
-                          poster_path: item.poster_path,
-                          rate: item.vote_average,
-                          release_date: item.release_date,
-                          overview: item.overview,
-                        },
-                      })
-                    }
-                  >
-                    <img
-                      src={"http://image.tmdb.org/t/p/w500/" + item.poster_path}
-                    />
-                    <Description>
-                      <Title>{item.title}</Title>
-                      <Rate>⭐️{item.vote_average}</Rate>
-                    </Description>
-                  </Movie>
+                  <Movie key={item.id} item={item} />
                 ))}
               </MovieContainer>
             )}
