@@ -25,8 +25,8 @@ function App() {
         <Route exact path="/nowplaying" element={<NowPlayingPage />}></Route>
         <Route exact path="/toprated" element={<TopRatedPage />}></Route>
         <Route exact path="/upcoming" element={<UpComingPage />}></Route>
-        <Route exact path="/detail" element={<MovieDetailPage />}></Route>
-        <Route exact path="/detail/:id" element={<MovieDetailPage />}></Route>
+        <Route exact path="/movie" element={<MovieDetailPage />}></Route>
+        <Route exact path="/movie/:id" element={<MovieDetailPage />}></Route>
         <Route exact path="*" element={<NotFoundPage />}></Route>
       </Routes>
       <Footer />
