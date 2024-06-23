@@ -16,9 +16,32 @@ const Container = styled.div`
   }
 `;
 
+const PageContainter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 30px;
+  background-color: #21234b;
+  color: white;
+  font-size: 18px;
+`;
+
+const PageButton = styled.button`
+  border: 0px;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  margin: 0px 5%;
+
+  &:disabled {
+    display: none;
+  }
+`;
+
 const PopularPage = () => {
   const [movieList, setMovieList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentPg, setCurrentPg] = useState(1);
+  const [totalPg, setTotalPg] = useState(1);
 
   const options = {
     method: "GET",
@@ -32,19 +55,21 @@ const PopularPage = () => {
     setIsLoading(true);
     const fetchData = async () => {
       const data = await fetch(
-        "https://api.themoviedb.org/3/movie/popular",
+        `https://api.themoviedb.org/3/movie/popular?language=en-US&page=${currentPg}`,
         options
       )
         .then((res) => res.json())
         .catch((err) => console.log(err));
 
-      setMovieList(data.results.slice(0, 8));
+      setMovieList(data.results);
+      setTotalPg(data.total_pages);
       setIsLoading(false);
     };
 
     fetchData();
-  }, []);
+  }, [currentPg]);
 
+  console.log(movieList);
   return (
     <>
       {isLoading ? (
@@ -56,6 +81,21 @@ const PopularPage = () => {
           ))}
         </Container>
       )}
+      <PageContainter>
+        <PageButton
+          disabled={currentPg - 1 <= 0}
+          onClick={() => setCurrentPg(currentPg - 1)}
+        >
+          &lt;
+        </PageButton>
+        {currentPg}
+        <PageButton
+          disabled={currentPg + 1 >= totalPg}
+          onClick={() => setCurrentPg(currentPg + 1)}
+        >
+          &gt;
+        </PageButton>
+      </PageContainter>
     </>
   );
 };
